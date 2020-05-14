@@ -1,0 +1,47 @@
+<form [formGroup]="fg" (ngSubmit)="onSubmit()">
+  <div class="task-style">
+    <h4>{{fg.value.yanfayibu.name}}</h4>
+    <div formArrayName="yanfayibu">
+      <div *ngFor="let item of yanfayibu.controls, let i = index" [formControlName] = "i" >
+        <div>
+          {{item.value | json}}
+          <label>节目{{i+1}}:&nbsp;</label>
+          <input formControlName="{{item.value.programName + i}}">
+          <!-- <span class="click" *ngIf="item['program'].length > 3" (click)="del(i,s)">删除</span> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div formArrayName="temp">
+    <div *ngFor="let item of temp.controls, let i = index" class="task-style">
+
+      <div *ngFor="let d of item.value['program'].value, let s = index" class="program-style">
+        <div>
+          {{item.value['program'].value | json}}
+          <label>节目{{s+1}}:&nbsp;</label>
+          <input formControlName="{{d['programName1'].value}}">
+          <span class="click" *ngIf="item['program'].length > 3" (click)="del(i,s)">删除</span>
+        </div>
+        <div *ngIf="name.errors">
+          <div *ngIf="name.hasError('required')">
+            <span style="color: red;">节目{{s+1}}不能为空</span>
+          </div>
+          <div *ngIf="name.hasError('minlength')">
+            <span style="color: red;">节目{{s+1}}名称不能小于四位</span>
+          </div>
+          <div *ngIf="name.hasError('s') && (name.dirty || name.touched)">
+            <span style="color: red;">节目名称不能重复</span>
+          </div>
+        </div>
+        <div *ngIf="!name.errors">
+          <span style="color: green;">节目名称可用</span>
+        </div>
+      </div>
+      <a class="click" (click)="add(i)">添加</a>
+    </div>
+  </div> -->
+
+  <!-- <div style="clear: both;width: 100%;padding-top: 30px">
+    <button type="submit" class="submit" [disabled]="!demoForm.form.valid">提交</button>
+  </div> -->
+</form>

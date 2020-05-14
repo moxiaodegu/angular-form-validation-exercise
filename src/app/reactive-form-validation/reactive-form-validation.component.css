@@ -1,0 +1,18 @@
+.task-style{
+  width: 270px;
+  float: left;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+.click{
+  color: #289CFF;
+  cursor: pointer;
+}
+.submit{
+  /* width: 100px; */
+  padding: 10px 40px;
+  margin-left: 700px;
+}
+.program-style{
+  margin-top: 10px;
+}

@@ -1,0 +1,39 @@
+<form #demoForm="ngForm" (ngSubmit)="onSubmit()">
+  <div *ngFor="let item of data, let i = index" class="task-style">
+    <h4>{{item['name']}}</h4>
+    <div *ngFor="let d of item['program'], let s = index" class="program-style">
+      <div>
+        <label [for]="d['programName'] + i + s">节目{{s+1}}:&nbsp;</label>
+        <input
+        #name="ngModel"
+        type="text"
+        [id]="d['programName'] + i + s"
+        [(ngModel)]="d['programName']"
+        [name]="d['programName'] + i + s"
+        required
+        minlength = "4"
+        [appCustomValidators] = "data">
+        <span class="click" *ngIf="item['program'].length > 3" (click)="del(i,s)">删除</span>
+      </div>
+      <div *ngIf="name.errors">
+        <div *ngIf="name.hasError('required')">
+          <span style="color: red;">节目{{s+1}}不能为空</span>
+        </div>
+        <div *ngIf="name.hasError('minlength')">
+          <span style="color: red;">节目{{s+1}}名称不能小于四位</span>
+        </div>
+        <div *ngIf="name.hasError('s') && (name.dirty || name.touched)">
+          <span style="color: red;">节目名称不能重复</span>
+        </div>
+      </div>
+      <div *ngIf="!name.errors">
+        <span style="color: green;">节目名称可用</span>
+      </div>
+    </div>
+    <a class="click" (click)="add(i)">添加</a>
+  </div>
+  <div style="clear: both;width: 100%;padding-top: 30px">
+    <button type="submit" class="submit" [disabled]="!demoForm.form.valid">提交</button>
+    <!-- {{data | json}} -->
+  </div>
+</form>
