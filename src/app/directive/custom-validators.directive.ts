@@ -38,7 +38,7 @@ export class CustomValidatorsDirective implements Validator{
   }
 
   validate(control: AbstractControl): ValidationErrors {
-    const { value }: { value: number } = control;
+    const { value }: { value: string } = control;
     return this.init(value);
   }
 
